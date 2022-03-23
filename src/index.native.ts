@@ -4,6 +4,9 @@ import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
 
 import schema from './model/schema';
 import migrations from './model/migrations';
+
+import Post from './model/Post';
+
 // import Post from './model/Post' // ⬅️ You'll import your Models here
 
 // First, create the adapter to the underlying database:
@@ -17,7 +20,7 @@ const adapter = new SQLiteAdapter({
   // additional installation steps have to be taken - disable if you run into issues...)
   jsi: true /* Platform.OS === 'ios' */,
   // (optional, but you should implement this method)
-  onSetUpError: (error: any) => {
+  onSetUpError: error => {
     // Database failed to load -- offer the user to reload the app or log out
   },
 });
@@ -25,7 +28,5 @@ const adapter = new SQLiteAdapter({
 // Then, make a Watermelon database from it!
 const database = new Database({
   adapter,
-  modelClasses: [
-    // Post, // ⬅️ You'll add Models to Watermelon here
-  ],
+  modelClasses: [Post],
 });
