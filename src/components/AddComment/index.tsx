@@ -1,20 +1,30 @@
 import React, {useState} from 'react'
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+
 import {database} from '../../services/watermelon'
+import {IComment} from '../../@types/model'
 
 const AddComment = () => {
-  const [comment, setComment] = useState<string>()
+  const [commentBody, setCommentBody] = useState<string>()
 
   const handleAddComment = async () => {
-    await database.write(async () => {})
+    if (commentBody) {
+      await database.write(async () => {
+        await database.get('comments').create((comment: IComment) => {
+          comment.body = commentBody
+        })
+      })
+    } else {
+      console.log('Vazio')
+    }
   }
 
   return (
     <View style={styles.container}>
       <TextInput
         placeholder="Começe uma discução"
-        value={comment}
-        onChangeText={setComment}
+        value={commentBody}
+        onChangeText={setCommentBody}
         style={styles.input}
       />
       <Pressable style={styles.button} onPress={handleAddComment}>

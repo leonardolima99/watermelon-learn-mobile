@@ -2,8 +2,8 @@ import {Model} from '@nozbe/watermelondb'
 
 export interface IComment extends Model {
   id: string
-  body: string
-  post_id: string
+  body?: string
+  post_id?: string
 }
 
 export interface IComments {
