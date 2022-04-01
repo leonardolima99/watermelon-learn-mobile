@@ -11,6 +11,10 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+// watermelon
+import com.nozbe.watermelondb.jsi.WatermelonDBJSIPackage; // ⬅️ This!
+import com.facebook.react.bridge.JSIModulePackage; // ⬅️ This!
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -32,6 +36,12 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         protected String getJSMainModuleName() {
           return "index";
+        }
+
+        // watermelon
+        @Override
+        protected JSIModulePackage getJSIModulePackage() {
+          return new WatermelonDBJSIPackage(); // ⬅️ This!
         }
       };
 

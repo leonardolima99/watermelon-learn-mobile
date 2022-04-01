@@ -4,7 +4,7 @@ import {field, text} from '@nozbe/watermelondb/decorators'
 export default class Post extends Model {
   static table = 'posts'
   static associations = {
-    comments: {type: <const>'has_many', foreignKey: 'post_id'},
+    comments: {type: <const>'has_many', foreignKey: 'post_id'}
   }
 
   @text('title') title: string | undefined
