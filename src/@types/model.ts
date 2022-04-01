@@ -1,4 +1,4 @@
-import {Model} from '@nozbe/watermelondb'
+import { Model } from '@nozbe/watermelondb'
 
 export interface IComment extends Model {
   id: string

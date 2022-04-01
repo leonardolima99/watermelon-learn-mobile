@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native'
+import React, { useState } from 'react'
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 
-import {database} from '../../services/watermelon'
-import {IComment} from '../../@types/model'
+import { database } from '../../services/watermelon'
+import { IComment } from '../../@types/model'
 
 const AddComment = () => {
   const [commentBody, setCommentBody] = useState<string>()

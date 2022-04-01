@@ -1,13 +1,13 @@
 import React from 'react'
-import {Pressable, StyleSheet, Text, View} from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-import {IComment} from '../../@types/model'
+import { IComment } from '../../@types/model'
 
 interface Props {
   comment: IComment
 }
 
-const ListItem = ({comment}: Props) => {
+const ListItem = ({ comment }: Props) => {
   const handleDeleteTask = () => {}
   const handleUpdateTask = () => {}
 
@@ -20,7 +20,8 @@ const ListItem = ({comment}: Props) => {
         </Pressable>
         <Pressable
           style={[styles.button, styles.button_update]}
-          onPress={handleUpdateTask}>
+          onPress={handleUpdateTask}
+        >
           <Text style={styles.button_text}>Modificar</Text>
         </Pressable>
       </View>
@@ -39,10 +40,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  title: {color: '#fff', fontSize: 16},
-  button: {backgroundColor: '#DC3545', padding: 15, borderRadius: 10},
-  button_update: {marginLeft: 5, backgroundColor: '#28A745'},
-  button_text: {color: '#fff'},
+  title: { color: '#fff', fontSize: 16 },
+  button: { backgroundColor: '#DC3545', padding: 15, borderRadius: 10 },
+  button_update: { marginLeft: 5, backgroundColor: '#28A745' },
+  button_text: { color: '#fff' },
   buttons: {
     flexDirection: 'row',
     alignItems: 'center'
