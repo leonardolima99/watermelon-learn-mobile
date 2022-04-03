@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { database } from '../../services/watermelon'
-import { IComment } from '../../@types/model'
+import { IComment } from '../../types/model'
 
-const AddComment = () => {
+export const AddComment = () => {
   const [commentBody, setCommentBody] = useState<string>()
 
   const handleAddComment = async () => {
@@ -23,6 +23,7 @@ const AddComment = () => {
     <View style={styles.container}>
       <TextInput
         placeholder="Começe uma discução"
+        placeholderTextColor={'#14141950'}
         value={commentBody}
         onChangeText={setCommentBody}
         style={styles.input}
@@ -56,5 +57,3 @@ const styles = StyleSheet.create({
     padding: 5
   }
 })
-
-export default AddComment

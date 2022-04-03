@@ -1,19 +1,36 @@
 import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import withObservables from '@nozbe/with-observables'
 
-import { IComment } from '../../@types/model'
+import { IComment2 } from '../../types/model'
+import { database } from '../../services/watermelon'
 
 interface Props {
-  comment: IComment
+  comment: IComment2
 }
 
-const ListItem = ({ comment }: Props) => {
-  const handleDeleteTask = () => {}
-  const handleUpdateTask = () => {}
+const RawListItem = ({ comment }: Props) => {
+  console.log('COMENTARIO: ', comment)
+  const handleDeleteTask = async () => {
+    await database.write(async () => {
+      const commentFinded = await database.get('comments').find(comment.id)
+      await commentFinded.destroyPermanently()
+    })
+  }
+  const handleUpdateTask = async () => {
+    await database.write(async () => {
+      const commentFinded = (await database
+        .get('comments')
+        .find(comment.id)) as any
+      await commentFinded.update(() => {
+        commentFinded.body = 'Editado!'
+      })
+    })
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{comment.body}</Text>
+      <Text style={styles.title}>{comment.body ? comment.body : 'nada'}</Text>
       <View style={styles.buttons}>
         <Pressable style={styles.button} onPress={handleDeleteTask}>
           <Text style={styles.button_text}>Deletar</Text>
@@ -50,4 +67,6 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListItem
+export const ListItem = withObservables(['comment'], ({ comment }) => {
+  comment
+})(RawListItem)
